@@ -14,7 +14,7 @@
 
 'use strict'
 
-let numberOfFilms = +prompt('Сколько фильмов вы уже посмотрели?', 4)
+let numberOfFilms = prompt('Сколько фильмов вы уже посмотрели?', 4)
 
 let personalMovieDB = {
   count: numberOfFilms,
@@ -28,6 +28,7 @@ let personalMovieDB = {
 
 // Запускаем цикл на вопросы. Если ответы на вопросы удовлетворяют условию, то мы записываем ответы в объект. Если же нет, то мы выводим error,  уменьшаем i на 1. В таком случае если пользователь сразу же неправильно вводит данные, то его i становится равна 0, и ему всё нужно делать заново. Если же он ответит хотя бы на 1 вопрос правильно, а на второй нет, то i будет уменьшаться до 1 до тех пор, пока он правильно не ответит на вопрос
 
+// Первый цикл
 for (let i = 0; i < 2; i++) {
   let lastFilm = prompt(
     'Один из последних просмотренных фильмов?',
@@ -48,7 +49,13 @@ for (let i = 0; i < 2; i++) {
     i--
   }
 }
-if (personalMovieDB.count < 10) {
+if (
+  personalMovieDB.count === null ||
+  isNaN(personalMovieDB.count) ||
+  personalMovieDB.count === ''
+) {
+  alert('Произошла ошибка')
+} else if (personalMovieDB.count < 10) {
   alert(
     `Просмотрено довольно мало фильмов: ${personalMovieDB.count} фильма просмотрено`
   )
@@ -56,8 +63,7 @@ if (personalMovieDB.count < 10) {
   alert(`Вы классический зритель: ${personalMovieDB.count} фильма просмотрено`)
 } else if (personalMovieDB.count > 30) {
   alert(`Вы киноман: просмотрено ${personalMovieDB.count} фильмов`)
-} else {
-  alert('Произошла ошибка')
 }
+
 console.log(personalMovieDB.movies)
 // Код возьмите из предыдущего домашнего задания
